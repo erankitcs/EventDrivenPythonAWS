@@ -20,9 +20,7 @@ EOF
 
 resource "null_resource" "lambda_build" {
   triggers = {
-    handler      = "${base64sha256(file("newhandler/handler.py"))}"
-    requirements = "${base64sha256(file("newhandler/requirements.txt"))}"
-    build        = "${base64sha256(file("scripts/build_package.sh"))}"
+    rerun_every_time = "${uuid()}"
   }
   provisioner "local-exec" {
     command = "${path.module}/scripts/build_package.sh"
