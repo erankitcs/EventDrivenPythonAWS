@@ -23,16 +23,16 @@ resource "null_resource" "lambda_build" {
     rerun_every_time = "${uuid()}"
   }
   provisioner "local-exec" {
-    command = "${path.module}/scripts/build_package.sh"
+    command = "${CODEBUILD_SRC_DIR}/scripts/build_package.sh"
     environment = {
-      lambda_source = "${path.module}/newhandler/"
+      lambda_source = "${CODEBUILD_SRC_DIR}/newhandler/"
     }
   }
 }
 
 data "archive_file" "lambda_with_dependencies" {
-  source_dir  = "${path.module}/newhandler/"
-  output_path = "${path.module}/handler.zip"
+  source_dir  = "${CODEBUILD_SRC_DIR}/newhandler/"
+  output_path = "${CODEBUILD_SRC_DIR}/handler.zip"
   type        = "zip"
   depends_on = ["null_resource.lambda_build"]
 }
