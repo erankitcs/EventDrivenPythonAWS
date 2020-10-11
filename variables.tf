@@ -15,7 +15,7 @@ variable "envionment" {
 }
 
 variable "runtime" {
-  default     = "python3.6"
+  default     = "python3.8"
   type        = string
   description = "Runtime for lambda function."
 }
