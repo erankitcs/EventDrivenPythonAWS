@@ -36,6 +36,7 @@ aws lambda invoke \
 
 6. Run below command to trigger DOWNLOAD lambda function manually and then further it will trigger ETL and load data into Database and send notification to susbcribed users of SUCCESS topic.
 
+7. Use buildspec.yml to create AWS Code Build pipeline for deployment.
 
 ## Architecure Diagram
 
