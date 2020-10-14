@@ -20,6 +20,13 @@ variable "runtime" {
   description = "Runtime for lambda function."
 }
 
+variable "landing_zone_bucket_name" {
+  type        = string
+  description = "A unique bucket name for landing zone."
+}
+
+
+
 variable "nyt_url" {
   default     = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
   type        = string
@@ -36,4 +43,28 @@ variable "table_name" {
   default     = "covid19us"
   type        = string
   description = "Table name to store the data."
+}
+
+variable "database_name" {
+  default     = "uscovid19db"
+  type        = string
+  description = "Database name for the Postgres."
+}
+
+variable "databse_secret_name" {
+  type        = string
+  description = "Secret name for the Postgres database."
+  default     = "uscovid19db_secrets"
+}
+
+variable "business_subscription_email_address_list" {
+  type = string
+  description = "List of email addresses as string(space separated) of business users."
+  default = "er.ankit.cs@gmail.com"
+}
+
+variable "technology_subscription_email_address_list" {
+  type = string
+  description = "List of email addresses as string(space separated) of Teachnology team."
+  default = "er.ankit.cs@gmail.com"
 }
