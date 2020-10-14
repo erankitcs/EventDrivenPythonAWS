@@ -1,0 +1,66 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+  #secrets-manager:
+     # key: secret-id:json-key:version-stage:version-id
+     # key: secret-id:json-key:version-stage:version-id
+  #exported-variables:
+     # - variable
+     # - variable
+  #git-credential-helper: yes
+#batch:
+  #fast-fail: true
+  #build-list:
+  #build-matrix:
+  #build-graph:
+phases:
+  install:
+    #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
+    #If you specify runtime-versions and use an image other than Ubuntu standard image 2.0, the build fails.
+    runtime-versions:
+      python: 3.6
+      # name: version
+    commands:
+      - yum install unzip -y
+      - wget https://releases.hashicorp.com/terraform/0.13.4/terraform_0.13.4_linux_arm.zip
+      - unzip terraform_0.13.4_linux_arm.zip
+      - mv terraform /usr/local/bin/
+      - pip3 install -r $CODEBUILD_SRC_DIR/newhandler/requirements.txt -t $CODEBUILD_SRC_DIR/newhandler
+      - zip -r $CODEBUILD_SRC_DIR/handler.zip $CODEBUILD_SRC_DIR/newhandler/
+      # - command
+  pre_build:
+    commands:
+      - terraform init
+      # - command
+  build:
+    commands:
+      - terraform apply -auto-approve
+      # - command
+  #post_build:
+    #commands:
+      # - command
+      # - command
+#reports:
+  #report-name-or-arn:
+    #files:
+      # - location
+      # - location
+    #base-directory: location
+    #discard-paths: yes
+    #file-format: JunitXml | CucumberJson
+#artifacts:
+  #files:
+    # - location
+    # - location
+  #name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  #base-directory: location
+#cache:
+  #paths:
+    # - paths

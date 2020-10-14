@@ -1,7 +1,7 @@
 resource "aws_cloudwatch_event_rule" "every_day_rule" {
     name = "${local.name_prefix}-cw-rule"
-    description = "Fires Lambda every day at 8 AM"
-    schedule_expression = "cron(15 1 * * ? *)"
+    description = "Fires Lambda every day at ${var.trigger_time}"
+    schedule_expression = "cron(0 ${var.trigger_time} * * ? *)"
 }
 
 

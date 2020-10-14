@@ -25,6 +25,10 @@ variable "landing_zone_bucket_name" {
   description = "A unique bucket name for landing zone."
 }
 
+variable "trigger_time" {
+  type        = string
+  description = "Time of the day when you want to trigger your ETL job."
+}
 
 
 variable "nyt_url" {

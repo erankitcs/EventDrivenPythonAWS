@@ -3,7 +3,9 @@ application_id = "covid19etl"
 envionment     = "dev"
 ##runtime = "python3.6"
 ## Update a unique bucket name here.
-landing_zone_bucket_name = "covid19ankitlandingzone1"
+landing_zone_bucket_name = "covid19ankitlandingzone145"
+## 1 meand 1 AM and 23 means 11 PM
+trigger_time   = 1
 nyt_url        = "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv"
 jh_url          = "https://raw.githubusercontent.com/datasets/covid-19/master/data/time-series-19-covid-combined.csv"
 table_name  = "covid19us"

@@ -40,10 +40,11 @@ resource "aws_iam_policy" "lambda_S3_policy_write" {
         "s3:GetObjectVersion"
       ],
       "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.covid19bucket.arn}"
+      "Sid": "AllowS3Write",
+      "Resource": ["${aws_s3_bucket.covid19bucket.arn}/*", "${aws_s3_bucket.covid19bucket.arn}" ]
     },
 	{
-            "Sid": "Allow List",
+            "Sid": "AllowList",
             "Effect": "Allow",
             "Action": "s3:ListAllMyBuckets",
             "Resource": "*"
@@ -52,6 +53,7 @@ resource "aws_iam_policy" "lambda_S3_policy_write" {
 }
 EOF
 }
+
 resource "aws_iam_role_policy_attachment" "s3-write-access-attach" {
   role       = aws_iam_role.download_lambda_role.name
   policy_arn = aws_iam_policy.lambda_S3_policy_write.arn

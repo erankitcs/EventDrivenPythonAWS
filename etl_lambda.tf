@@ -89,11 +89,12 @@ resource "aws_iam_policy" "lambda_S3_policy_read" {
         "s3:ListBucket",
         "s3:GetObjectVersion"
       ],
+      "Sid": "AllowS3Read",
       "Effect": "Allow",
-      "Resource": "${aws_s3_bucket.covid19bucket.arn}"
+      "Resource": ["${aws_s3_bucket.covid19bucket.arn}/*", "${aws_s3_bucket.covid19bucket.arn}" ]
     },
 	{
-            "Sid": "Allow List",
+            "Sid": "AllowList",
             "Effect": "Allow",
             "Action": "s3:ListAllMyBuckets",
             "Resource": "*"
