@@ -8,6 +8,8 @@ This repository is created for creating an event driven Python ETL processing in
 2. Create secrets in Secret Manager. Use secret tye as "Other type of secrets"
     Use these Keys only: username and password
 
+    ![Screenshot](Secrete_Manager.JPG)
+
 ## Steps
 
 1. Update backend.tf file with your unique bucket name and you can region as well.
@@ -51,12 +53,12 @@ If you want to simulate failiure senario and whether next day it will pick up bo
     
 ## Architecure Diagram
 
-![Screenshot](ServerlessETL_Arch.jpeg)
+![Screenshot](images/ServerlessETL_Arch.jpeg)
 
 ## Dasboard in AWS QuickSights
 
 Follow below link if you are facing issues with accessing database from AWS Quicksight.
 
-![Screenshot](Covid19US_Dashboard.jpg)
+![Screenshot](images/Covid19US_Dashboard.jpg)
 
 https://medium.com/@felipelopezhamann/connect-aws-quicksight-to-an-rds-in-a-vpc-eb1ab1bb539a
