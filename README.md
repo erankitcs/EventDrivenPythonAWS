@@ -38,6 +38,19 @@ aws lambda invoke \
 
 7. Use buildspec.yml to create AWS Code Build pipeline for deployment.
 
+8. If you want to simulate failiure senario and whether next day it will pick up both failed date data and current day data. Upload files available into "testdata" folder into an S3 public bucket and pass on URL those URLs input.
+    - Test-1 : Input: _fail files URLs. It will fail due to incorrect data.
+    - Test-2 : Input: _success files URLs. It will be successful and both days data will loaded.
+
+    
 ## Architecure Diagram
 
 ![Screenshot](ServerlessETL_Arch.jpeg)
+
+## Dasboard in AWS QuickSights
+
+Follow below link if you are facing issues with accessing database from AWS Quicksight.
+
+![Screenshot](Covid19US Dashboard.pdf)
+
+https://medium.com/@felipelopezhamann/connect-aws-quicksight-to-an-rds-in-a-vpc-eb1ab1bb539a
