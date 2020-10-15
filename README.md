@@ -51,6 +51,6 @@ aws lambda invoke \
 
 Follow below link if you are facing issues with accessing database from AWS Quicksight.
 
-![Screenshot](Covid19US Dashboard.pdf)
+![Screenshot]("Covid19US Dashboard.pdf")
 
 https://medium.com/@felipelopezhamann/connect-aws-quicksight-to-an-rds-in-a-vpc-eb1ab1bb539a
