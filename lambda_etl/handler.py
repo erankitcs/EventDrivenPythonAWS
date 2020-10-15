@@ -64,9 +64,9 @@ def lambda_handler(event, context):
     print("Merging two data sets.")
     covid19us_data = datatransform.merge_datasets(nyt_data,jh_data)
     #Printing data
-    print(nyt_data.head())
-    print(jh_data.head())
-    print(covid19us_data.head())
+    #print(nyt_data.head())
+    #print(jh_data.head())
+    #print(covid19us_data.head())
     
     if covid19us_data.empty:
         print("Latest data not available. Failing gracefully.")
