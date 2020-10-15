@@ -42,6 +42,7 @@ aws lambda invoke \
     - Test-1 : Input: _fail files URLs. It will fail due to incorrect data.
     - Test-2 : Input: _success files URLs. It will be successful and both days data will loaded.
 
+9. Remember to approve SNS subscription from your mail box.
     
 ## Architecure Diagram
 
