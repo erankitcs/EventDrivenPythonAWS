@@ -42,7 +42,7 @@ aws lambda invoke \
 
 8. Remember to approve SNS subscription from your mail box.
 
-### Testing
+## Testing
 If you want to simulate failiure senario and whether next day it will pick up both failed date data and current day data. Upload files available into "testdata" folder into an S3 public bucket and pass on URLs as  input to lambda function by changing tfvars file and redeploy terraform.
 - Test-0 : Input: _day0 files URLs. Deploy using terraform apply. Run lambda invoke AWS CLI. It will load complete data set into DB. 
 - Test-1 : Input: _fail files URLs. Deploy using terraform apply. Run lambda invoke AWS CLI. It will fail due to incorrect data.
