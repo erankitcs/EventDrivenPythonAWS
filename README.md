@@ -8,7 +8,7 @@ This repository is created for creating an event driven Python ETL processing in
 2. Create secrets in Secret Manager. Use secret tye as "Other type of secrets"
     Use these Keys only: username and password
 
-    ![Screenshot](images/Secrete_Manager.JPG)
+    ![Screenshot](images/Secrete_Manager_example.jpeg)
 
 ## Steps
 
