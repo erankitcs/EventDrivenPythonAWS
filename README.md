@@ -38,11 +38,16 @@ aws lambda invoke \
 
 7. Use buildspec.yml to create AWS Code Build pipeline for deployment.
 
-8. If you want to simulate failiure senario and whether next day it will pick up both failed date data and current day data. Upload files available into "testdata" folder into an S3 public bucket and pass on URL those URLs input.
-    - Test-1 : Input: _fail files URLs. It will fail due to incorrect data.
-    - Test-2 : Input: _success files URLs. It will be successful and both days data will loaded.
+8. Remember to approve SNS subscription from your mail box.
 
-9. Remember to approve SNS subscription from your mail box.
+### Testing
+If you want to simulate failiure senario and whether next day it will pick up both failed date data and current day data. Upload files available into "testdata" folder into an S3 public bucket and pass on URL those URLs input.
+    - Test-0 : Input: _day0 files URLs. Deploy using terraform apply. Run lambda invoke AWS CLI. It will load complete data set into DB. 
+    - Test-1 : Input: _fail files URLs. Deploy using terraform apply. Run lambda invoke AWS CLI. It will fail due to incorrect data.
+    - Test-2 : Input: _success files URLs. Deploy using terraform apply. Run lambda invoke AWS CLI. It will be successful and both days data will loaded.
+
+** You can have a look of test result available in "test_results.pdf" **
+
     
 ## Architecure Diagram
 

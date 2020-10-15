@@ -65,11 +65,37 @@ resource "aws_iam_role_policy_attachment" "s3-write-access-attach" {
 #  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 #}
 
-## Giving permission to publish into SNS
-resource "aws_iam_role_policy_attachment" "download_lambda_role_SNS" {
-  role       = aws_iam_role.download_lambda_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+
+## Policy for publishing to SNS
+resource "aws_iam_policy" "download_lambda_SNS_Publish" {
+  name        = "download_lambda_SNS_Publish"
+  path        = "/"
+  description = "Policy for publishing to SNS."
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+            "Sid": "Allowpub",
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": ["${aws_sns_topic.error_topic.arn}","${aws_sns_topic.filesavailable.arn}"]
+    }
+  ]
 }
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "SNS-pub-access-attach_download_lambda" {
+  role       = aws_iam_role.download_lambda_role.name
+  policy_arn = aws_iam_policy.download_lambda_SNS_Publish.arn
+}
+
+## Giving permission to publish into SNS
+#resource "aws_iam_role_policy_attachment" "download_lambda_role_SNS" {
+#  role       = aws_iam_role.download_lambda_role.name
+#  policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+#}
 
 
 data "archive_file" "download_lambda_package" {

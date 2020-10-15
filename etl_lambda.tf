@@ -114,11 +114,36 @@ resource "aws_iam_role_policy_attachment" "s3-read-access-attach" {
 #  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 #}
 
-## Giving permission to publish into SNS. Controlling access through VPC Endpoint policy.
-resource "aws_iam_role_policy_attachment" "etl_lambda_role_SNS" {
-  role       = aws_iam_role.lambda_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+## Policy for publishing to SNS
+resource "aws_iam_policy" "etl_lambda_SNS_Publish" {
+  name        = "etl_lambda_SNS_Publish"
+  path        = "/"
+  description = "Policy for publishing to SNS."
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+            "Sid": "Allowpub",
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": ["${aws_sns_topic.error_topic.arn}","${aws_sns_topic.business_user_topic.arn}"]
+    }
+  ]
 }
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "SNS-pub-access-attach_etl_lambda" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = aws_iam_policy.etl_lambda_SNS_Publish.arn
+}
+
+## Giving permission to publish into SNS. Controlling access through VPC Endpoint policy.
+#resource "aws_iam_role_policy_attachment" "etl_lambda_role_SNS" {
+#  role       = aws_iam_role.lambda_role.name
+#  policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
+#}
 
 ## Allowing execution from SNS.
 resource "aws_lambda_permission" "with_sns" {
